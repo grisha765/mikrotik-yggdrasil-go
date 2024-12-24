@@ -37,10 +37,10 @@ jobs:
         run: |
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
             echo "::set-output name=ghcr_tag::ghcr.io/${{ github.repository }}:latest"
-            echo "::set-output name=dockerhub_tag::docker.io/${{ secrets.DOCKER_USERNAME }}/${{ github.repository }}:latest"
+            echo "::set-output name=dockerhub_tag::docker.io/${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest"
           elif [ "${{ github.ref }}" == "refs/heads/dev" ]; then
             echo "::set-output name=ghcr_tag::ghcr.io/${{ github.repository }}:dev"
-            echo "::set-output name=dockerhub_tag::docker.io/${{ secrets.DOCKER_USERNAME }}/${{ github.repository }}:dev"
+            echo "::set-output name=dockerhub_tag::docker.io/${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:dev"
           fi
 
       - name: Build and push Docker image
