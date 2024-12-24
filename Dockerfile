@@ -1,8 +1,8 @@
 FROM docker.io/golang:alpine as builder
 
 ARG DUMB_INIT_VERSION=1.2.5 \
-    DUMB_INIT_ARCH=aarch64 \
-    YGGDRASIL_VERSION=0.4.7
+    DUMB_INIT_ARCH=armhf \
+    YGGDRASIL_VERSION=0.5.12
 
 RUN set -ex \
   && apk --no-cache add \
