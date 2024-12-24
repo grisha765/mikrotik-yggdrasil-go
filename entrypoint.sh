@@ -2,7 +2,7 @@
 
 #set -euxo pipefail
 
-conf_file=/config/yggdrasil.conf
+conf_file=/yggdrasil.conf
 
 [ -f "${conf_file}" ] || yggdrasil -genconf >${conf_file}
 
