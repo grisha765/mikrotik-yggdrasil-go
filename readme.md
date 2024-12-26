@@ -8,6 +8,9 @@
 
 /container/envs add name=yggdrasil key=PEERS value="\"tls://peer_ip:port\", \"tls://peer2_ip:port\""
 
+# if you have your private key
+/container/envs add name=yggdrasil key=PRIVATEKEY value=<your_ygg_private_key>
+
 /container/add remote-image=grisha765/mikrotik-yggdrasil-go:latest interface=YAGGDRASIl root-dir=usb1/docker/yggdrasil start-on-boot=yes envlist=yggdrasil
 ```
 
