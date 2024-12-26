@@ -6,8 +6,12 @@ conf_file=/yggdrasil.conf
 
 sed -i "/Peers: \[.*\]/c\  Peers: [ ${PEERS} ]" ${conf_file}
 
-if [[ -n "${PRIVATEKEY}" ]]; then
-  sed -i "/PrivateKey: .*/c\  PrivateKey: ${PRIVATEKEY}" ${conf_file}
+if [[ -n "${PRIVATE_KEY}" ]]; then
+  sed -i "/PrivateKey: .*/c\  PrivateKey: ${PRIVATE_KEY}" ${conf_file}
+fi
+
+if [[ "${IPV6_FORWARDING}" == 1 ]]; then
+  sysctl -w net.ipv6.conf.all.forwarding=1
 fi
 
 exec /usr/bin/yggdrasil -useconffile ${conf_file}
