@@ -11,7 +11,10 @@ if [[ -n "${PRIVATE_KEY}" ]]; then
 fi
 
 if [[ "${IPV6_FORWARDING}" == 1 ]]; then
-  sysctl -w net.ipv6.conf.all.forwarding=1
+  current_forwarding=$(sysctl -n net.ipv6.conf.all.forwarding)
+  if [[ "${current_forwarding}" != 1 ]]; then
+    sysctl -w net.ipv6.conf.all.forwarding=1
+  fi
 fi
 
 exec /usr/bin/yggdrasil -useconffile ${conf_file}
